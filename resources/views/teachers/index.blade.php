@@ -18,25 +18,19 @@
 
                     <tbody>
                     <tr>
-                        <th scope="row" class="active-tab"><a href="/authors">Authors</a></th>
+                        <th scope="row"><a href="/attendances">Attendances</a></th>
                         <!--<td>Mark</td>-->
                         <!--<td>Otto</td>-->
                         <!--<td>@mdo</td>-->
                     </tr>
                     <tr>
-                        <th scope="row"><a href="/books">Books</a></th>
+                        <th scope="row"><a href="/courses">Courses</a></th>
                         <!--<td>Jacob</td>-->
                         <!--<td>Thornton</td>-->
                         <!--<td>@fat</td>-->
                     </tr>
                     <tr>
-                        <th scope="row"><a href="/bookslenders">Booklenders</a></th>
-                        <!--<td>Larry</td>-->
-                        <!--<td>the Bird</td>-->
-                        <!--<td>@twitter</td>-->
-                    </tr>
-                    <tr>
-                        <th scope="row"><a href="/categories">Categories</a></th>
+                        <th scope="row"><a href="/departments">Departments</a></th>
                         <!--<td>Larry</td>-->
                         <!--<td>the Bird</td>-->
                         <!--<td>@twitter</td>-->
@@ -48,19 +42,37 @@
                         <!--<td>@twitter</td>-->
                     </tr>
                     <tr>
-                        <th scope="row"><a href="/lenders">Lenders</a></th>
+                        <th scope="row"><a href="/rooms">Rooms</a></th>
                         <!--<td>Larry</td>-->
                         <!--<td>the Bird</td>-->
                         <!--<td>@twitter</td>-->
                     </tr>
                     <tr>
-                        <th scope="row"><a href="/publishers">Publishers</a></th>
+                        <th scope="row"><a href="/sections">Sections</a></th>
                         <!--<td>Larry</td>-->
                         <!--<td>the Bird</td>-->
                         <!--<td>@twitter</td>-->
                     </tr>
                     <tr>
-                        <th scope="row"><a href="/staffs">Staffs</a></th>
+                        <th scope="row"><a href="/students">Students</a></th>
+                        <!--<td>Larry</td>-->
+                        <!--<td>the Bird</td>-->
+                        <!--<td>@twitter</td>-->
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="/studentscourses">Studentscourses</a></th>
+                        <!--<td>Larry</td>-->
+                        <!--<td>the Bird</td>-->
+                        <!--<td>@twitter</td>-->
+                    </tr>
+                    <tr>
+                        <th scope="row" class="active-tab"><a href="/teachers">Teachers</a></th>
+                        <!--<td>Larry</td>-->
+                        <!--<td>the Bird</td>-->
+                        <!--<td>@twitter</td>-->
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="/teacherscourses">Teacherscourses</a></th>
                         <!--<td>Larry</td>-->
                         <!--<td>the Bird</td>-->
                         <!--<td>@twitter</td>-->
@@ -83,30 +95,42 @@
                     <thead>
                     <tr>
                         <th scope="col">Id</th>
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
+                        <th scope="col">First_name</th>
+                        <th scope="col">Last_name</th>
                         <th scope="col">Age</th>
-                        <th scope="col">Date Created</th>
+                        <th scope="col">Dob</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone_number</th>
+                        <th scope="col">Gender_id</th>
+                        <th scope="col">Address_id</th>
+                        <th scope="col">Date_created</th>
+                        <th scope="col">Date_edited</th>
                         @if (Auth::user()->level === 1)
-                            <th scope="col"><a href="/authors/create" class="btn btn-outline-secondary">Create</a></th>
+                            <th scope="col"><a href="/teachers/create" class="btn btn-outline-secondary">Create</a></th>
                         @endif
 
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($authors as $author)
+                    @foreach ($teachers as $teacher)
                         <tr>
-                            <td>{{ $author->id }}</td>
-                            <td>{{ $author->fname }}</td>
-                            <td>{{ $author->lname }}</td>
-                            <td>{{ $author->age }}</td>
-                            <td>{{ $author->date_created }}</td>
+                            <td>{{ $teacher->id }}</td>
+                            <td>{{ $teacher->first_name }}</td>
+                            <td>{{ $teacher->last_name }}</td>
+                            <td>{{ $teacher->age }}</td>
+                            <td>{{ $teacher->dob }}</td>
+                            <td>{{ $teacher->email }}</td>
+                            <td>{{ $teacher->phone_number }}</td>
+                            <td>{{ $teacher->gender_id }}</td>
+                            <td>{{ $teacher->address_id }}</td>
+                            <td>{{ $teacher->date_created }}</td>
+                            <td>{{ $teacher->date_edited }}</td>
                             @if (Auth::user()->level === 1)
                                 <td>
-                                    <a href="/authors/{{ $author->id }}/edit" class="btn btn-outline-secondary">Edit</a>
+                                    <a href="/teachers/{{ $teacher->id }}/edit" class="btn btn-outline-secondary">Edit</a>
                                 </td>
                                 <td>
-                                    <form action="/authors/{{ $author->id }}" method="post">
+                                    <form action="/teachers/{{ $teacher->id }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-outline-secondary">Delete</button>

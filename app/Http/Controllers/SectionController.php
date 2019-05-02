@@ -64,7 +64,7 @@ class SectionController extends Controller
             $name = $request->input('name');
             $start = $request->input('start');
             $end = $request->input('end');
-            DB::table('rooms')->insert(
+            DB::table('sections')->insert(
                 ['name' => $name, 'start' => $start,'end' => $end
                 ]
             );
