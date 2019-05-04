@@ -36,7 +36,7 @@
                         <!--<td>@twitter</td>-->
                     </tr>
                     <tr>
-                        <th scope="row" class="active-tab"><a href="/genders">Genders</a></th>
+                        <th scope="row"><a href="/genders">Genders</a></th>
                         <!--<td>Larry</td>-->
                         <!--<td>the Bird</td>-->
                         <!--<td>@twitter</td>-->
@@ -48,7 +48,7 @@
                         <!--<td>@twitter</td>-->
                     </tr>
                     <tr>
-                        <th scope="row"><a href="/manufacturers">Manufacturers</a></th>
+                        <th scope="row" class="active-tab"><a href="/manufacturers">Manufacturers</a></th>
                         <!--<td>Larry</td>-->
                         <!--<td>the Bird</td>-->
                         <!--<td>@twitter</td>-->
@@ -77,28 +77,30 @@
                     <thead>
                     <tr>
                         <th scope="col">Id</th>
-                        <th scope="col">Gender</th>
-                        <th scope="col">Date_created</th>
-                        <th scope="col">Date_edited</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Contact number</th>
+                        <th scope="col">Contact person first name</th>
+                        <th scope="col">Contact person last name</th>
                         @if (Auth::user()->level === 1)
-                            <th scope="col"><a href="/genders/create" class="btn btn-outline-secondary">Create</a></th>
+                            <th scope="col"><a href="/manufacturers/create" class="btn btn-outline-secondary">Create</a></th>
                         @endif
 
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($genders as $gender)
+                    @foreach ($manufacturers as $manufacturer)
                         <tr>
-                            <td>{{ $gender->id }}</td>
-                            <td>{{ $gender->gender }}</td>
-                            <td>{{ $gender->date_created }}</td>
-                            <td>{{ $gender->date_edited }}</td>
+                            <td>{{ $manufacturer->id }}</td>
+                            <td>{{ $manufacturer->name }}</td>
+                            <td>{{ $manufacturer->contact_number }}</td>
+                            <td>{{ $manufacturer->contact_person_first_name }}</td>
+                            <td>{{ $manufacturer->contact_person_last_name }}</td>
                             @if (Auth::user()->level === 1)
                                 <td>
-                                    <a href="/genders/{{ $gender->id }}/edit" class="btn btn-outline-secondary">Edit</a>
+                                    <a href="/manufacturers/{{ $manufacturer->id }}/edit" class="btn btn-outline-secondary">Edit</a>
                                 </td>
                                 <td>
-                                    <form action="/genders/{{ $gender->id }}" method="post">
+                                    <form action="/manufacturers/{{ $manufacturer->id }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-outline-secondary">Delete</button>

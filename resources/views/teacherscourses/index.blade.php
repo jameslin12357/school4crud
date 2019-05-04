@@ -77,7 +77,7 @@
                         <!--<td>the Bird</td>-->
                         <!--<td>@twitter</td>-->
                     </tr>
-                 
+
                     </tbody>
                 </table>
             </div>

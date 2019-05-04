@@ -6,12 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class CourseController extends Controller
+class CustomerstaffinventoryController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -20,15 +16,16 @@ class CourseController extends Controller
     public function index()
     {
         //
-        $courses = DB::select('SELECT * FROM courses ORDER BY date_created DESC');
-        $count = DB::table('courses')->count();
+        $customersstaffsinventories = DB::select('SELECT * FROM customersstaffsinventories ORDER BY date_created DESC');
+        $count = DB::table('customersstaffsinventories')->count();
         $data = array(
-            'courses' => $courses,
+            'customersstaffsinventories' => $customersstaffsinventories,
             'count' => $count,
-            'title' => 'Courses'
+            'title' => 'Customersstaffsinventories'
         );
-        return view('courses/index')->with($data);
+        return view('customersstaffsinventories/index')->with($data);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -43,7 +40,7 @@ class CourseController extends Controller
             $data = array(
                 'title' => 'Create'
             );
-            return view('courses/new')->with($data);
+            return view('customersstaffsinventories/new')->with($data);
         } else {
             return redirect('/');
         }
@@ -63,26 +60,21 @@ class CourseController extends Controller
         $level = Auth::user()->level;
         if ($level === 1){
             $validatedData = $request->validate([
-                'name' => 'required',
-                'description' => 'required',
-                'section_id' => 'required',
-                'department_id' => 'required',
-                'room_id' => 'required'
+                'customersstaffs_id' => 'required',
+                'inventories_id' => 'required'
             ]);
-            $name = $request->input('name');
-            $description = $request->input('description');
-            $section_id= $request->input('section_id');
-            $department_id = $request->input('department_id');
-            $room_id = $request->input('room_id');
-            DB::table('courses')->insert(
-                ['name' => $name, 'description' => $description, 'section_id' => $section_id, 'department_id' => $department_id, 'room_id' => $name
+            $customersstaffs_id = $request->input('customersstaffs_id');
+            $inventories_id = $request->input('inventories');
+            DB::table('customersstaffsinventories')->insert(
+                ['customersstaffs_id' => $customersstaffs_id, 'inventories_id' => $inventories_id
                 ]
             );
-            return redirect('/courses')->with('success', 'Course created.');
+            return redirect('/customersstaffsinventories')->with('success', 'Customerstaffinventory created.');
         } else {
             return redirect('/');
         }
     }
+
 
     /**
      * Display the specified resource.
@@ -106,15 +98,15 @@ class CourseController extends Controller
         //
         $level = Auth::user()->level;
         if ($level === 1){
-            $course = DB::select('select * from courses where id = ?', array($id));
-            if (empty($course)) {
+            $customerstaffinventory = DB::select('select * from customersstaffsinventories where id = ?', array($id));
+            if (empty($customerstaffinventory)) {
                 return view('404');
             }
             $data = array(
                 'title' => 'Edit',
-                'course' => $course
+                'customerstaffinventory' => $customerstaffinventory
             );
-            return view('courses/edit')->with($data);
+            return view('customersstaffsinventories/edit')->with($data);
         } else {
             return redirect('/');
         }
@@ -133,33 +125,27 @@ class CourseController extends Controller
         //
         $level = Auth::user()->level;
         if ($level === 1){
-            $course = DB::select('select * from courses where id = ?', array($id));
-            if (empty($course)) {
+            $customerstaffinventory = DB::select('select * from customersstaffsinventories where id = ?', array($id));
+            if (empty($customerstaff)) {
                 return view('404');
             } else {
                 $validatedData = $request->validate([
-                    'name' => 'required',
-                    'description' => 'required',
-                    'section_id' => 'required',
-                    'department_id' => 'required',
-                    'room_id' => 'required'
+                    'customersstaffs_id' => 'required',
+                    'inventories_id' => 'required'
                 ]);
-                $name = $request->input('name');
-                $description = $request->input('description');
-                $section_id= $request->input('section_id');
-                $department_id = $request->input('department_id');
-                $room_id = $request->input('room_id');
-                DB::table('courses')
+                $customersstaffs_id = $request->input('customersstaffs_id');
+                $inventories_id = $request->input('inventories');
+                DB::table('customersstaffs')
                     ->where('id', $id)
-                    ->update(['name' => $name, 'description' => $description, 'section_id' => $section_id, 'department_id' => $department_id, 'room_id' => $room_id]);
-                return redirect('/courses')->with('success', 'Course edited.');
+                    ->update(['customersstaffs_id' => $customersstaffs_id, 'inventories_id' => $inventories_id
+                    ]);
+                return redirect('/customersstaffsinventories')->with('success', 'Customerstaffinventory edited.');
 
             }
         } else {
             return redirect('/');
         }
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -172,12 +158,12 @@ class CourseController extends Controller
         //
         $level = Auth::user()->level;
         if ($level === 1){
-            $course = DB::select('select * from courses where id = ?', array($id));
-            if (empty($course)) {
+            $customerstaffinventory = DB::select('select * from customersstaffsinventories where id = ?', array($id));
+            if (empty($customerstaffinventory)) {
                 return view('404');
             } else {
-                DB::table('courses')->where('id', '=', $id)->delete();
-                return redirect('/courses')->with('success', 'Courses deleted.');
+                DB::table('customersstaffsinventories')->where('id', '=', $id)->delete();
+                return redirect('/customersstaffsinventories')->with('success', 'Customerstaffinventory deleted.');
             }
         } else {
             return redirect('/');

@@ -32,7 +32,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="/">School4CRUD</a>
+        <a class="navbar-brand" href="/">Smallbusiness4CRUD</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -126,7 +126,7 @@
                 {{--                    </a>--}}
                 {{--                </div>--}}
                 <div class="mt-20">
-                    <span>New to School4CRUD? <a href="/register">Sign up</a></span>
+                    <span>New to Smallbusiness4CRUD? <a href="/register">Sign up</a></span>
                 </div>
             </form>
 

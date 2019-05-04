@@ -6,12 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class AttendanceController extends Controller
+class InventoryController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -20,15 +16,16 @@ class AttendanceController extends Controller
     public function index()
     {
         //
-        $attendances = DB::select('SELECT * FROM attendances ORDER BY date_created DESC');
-        $count = DB::table('attendances')->count();
+        $inventories = DB::select('SELECT * FROM inventories ORDER BY date_created DESC');
+        $count = DB::table('inventories')->count();
         $data = array(
-            'attendances' => $attendances,
+            'inventories' => $inventories,
             'count' => $count,
-            'title' => 'Attendances'
+            'title' => 'Inventories'
         );
-        return view('attendances/index')->with($data);
+        return view('inventories/index')->with($data);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -43,7 +40,7 @@ class AttendanceController extends Controller
             $data = array(
                 'title' => 'Create'
             );
-            return view('attendances/new')->with($data);
+            return view('inventories/new')->with($data);
         } else {
             return redirect('/');
         }
@@ -63,18 +60,25 @@ class AttendanceController extends Controller
         $level = Auth::user()->level;
         if ($level === 1){
             $validatedData = $request->validate([
-                'student_id' => 'required'
+                'name' => 'required',
+                'description' => 'required',
+                'stock' => 'required',
+                'manufacturer_id' => 'required'
             ]);
-            $student_id = $request->input('student_id');
-            DB::table('attendances')->insert(
-                ['student_id' => $student_id
+            $name = $request->input('name');
+            $description = $request->input('description');
+            $stock = $request->input('stock');
+            $manufacturer_id = $request->input('manufacturer_id');
+            DB::table('customers')->insert(
+                ['name' => $name, '$description' => $description,'stock' => $stock,'$manufacturer_id' => $manufacturer_id
                 ]
             );
-            return redirect('/attendances')->with('success', 'Attendance created.');
+            return redirect('/inventories')->with('success', 'Inventory created.');
         } else {
             return redirect('/');
         }
     }
+
 
     /**
      * Display the specified resource.
@@ -98,15 +102,15 @@ class AttendanceController extends Controller
         //
         $level = Auth::user()->level;
         if ($level === 1){
-            $attendance = DB::select('select * from attendances where id = ?', array($id));
-            if (empty($attendance)) {
+            $inventory = DB::select('select * from inventories where id = ?', array($id));
+            if (empty($inventory)) {
                 return view('404');
             }
             $data = array(
                 'title' => 'Edit',
-                'attendance' => $attendance
+                'inventory' => $inventory
             );
-            return view('attendances/edit')->with($data);
+            return view('inventories/edit')->with($data);
         } else {
             return redirect('/');
         }
@@ -125,25 +129,31 @@ class AttendanceController extends Controller
         //
         $level = Auth::user()->level;
         if ($level === 1){
-            $attendance = DB::select('select * from attendances where id = ?', array($id));
-            if (empty($attendance)) {
+            $inventory = DB::select('select * from inventories where id = ?', array($id));
+            if (empty($customer)) {
                 return view('404');
             } else {
                 $validatedData = $request->validate([
-                    'student_id' => 'required'
+                    'name' => 'required',
+                    'description' => 'required',
+                    'stock' => 'required',
+                    'manufacturer_id' => 'required'
                 ]);
-                $student_id = $request->input('student_id');
-                DB::table('attendances')
+                $name = $request->input('name');
+                $description = $request->input('description');
+                $stock = $request->input('stock');
+                $manufacturer_id = $request->input('manufacturer_id');
+                DB::table('customers')
                     ->where('id', $id)
-                    ->update(['student_id' => $student_id]);
-                return redirect('/attendances')->with('success', 'Attendance edited.');
+                    ->update(['name' => $name, '$description' => $description,'stock' => $stock,'$manufacturer_id' => $manufacturer_id
+                    ]);
+                return redirect('/inventories')->with('success', 'Inventory edited.');
 
             }
         } else {
             return redirect('/');
         }
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -156,12 +166,12 @@ class AttendanceController extends Controller
         //
         $level = Auth::user()->level;
         if ($level === 1){
-            $attendance = DB::select('select * from attendances where id = ?', array($id));
-            if (empty($attendance)) {
+            $inventory = DB::select('select * from inventories where id = ?', array($id));
+            if (empty($inventory)) {
                 return view('404');
             } else {
-                DB::table('attendances')->where('id', '=', $id)->delete();
-                return redirect('/attendances')->with('success', 'Attendance deleted.');
+                DB::table('inventories')->where('id', '=', $id)->delete();
+                return redirect('/inventories')->with('success', 'Inventory deleted.');
             }
         } else {
             return redirect('/');

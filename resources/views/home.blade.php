@@ -18,19 +18,19 @@
 
                 <tbody>
                 <tr>
-                    <th scope="row"><a href="/attendances">Attendances</a></th>
+                    <th scope="row"><a href="/customers">Customers</a></th>
                     <!--<td>Mark</td>-->
                     <!--<td>Otto</td>-->
                     <!--<td>@mdo</td>-->
                 </tr>
                 <tr>
-                    <th scope="row"><a href="/courses">Courses</a></th>
+                    <th scope="row"><a href="/customersstaffs">Customersstaffs</a></th>
                     <!--<td>Jacob</td>-->
                     <!--<td>Thornton</td>-->
                     <!--<td>@fat</td>-->
                 </tr>
                 <tr>
-                    <th scope="row"><a href="/departments">Departments</a></th>
+                    <th scope="row"><a href="/customersstaffsinventories">Customersstaffsinventories</a></th>
                     <!--<td>Larry</td>-->
                     <!--<td>the Bird</td>-->
                     <!--<td>@twitter</td>-->
@@ -42,42 +42,23 @@
                     <!--<td>@twitter</td>-->
                 </tr>
                 <tr>
-                    <th scope="row"><a href="/rooms">Rooms</a></th>
+                    <th scope="row"><a href="/inventories">Inventories</a></th>
                     <!--<td>Larry</td>-->
                     <!--<td>the Bird</td>-->
                     <!--<td>@twitter</td>-->
                 </tr>
                 <tr>
-                    <th scope="row"><a href="/sections">Sections</a></th>
+                    <th scope="row"><a href="/manufacturers">Manufacturers</a></th>
                     <!--<td>Larry</td>-->
                     <!--<td>the Bird</td>-->
                     <!--<td>@twitter</td>-->
                 </tr>
                 <tr>
-                    <th scope="row"><a href="/students">Students</a></th>
+                    <th scope="row"><a href="/staffs">Staffs</a></th>
                     <!--<td>Larry</td>-->
                     <!--<td>the Bird</td>-->
                     <!--<td>@twitter</td>-->
                 </tr>
-                <tr>
-                    <th scope="row"><a href="/studentscourses">Studentscourses</a></th>
-                    <!--<td>Larry</td>-->
-                    <!--<td>the Bird</td>-->
-                    <!--<td>@twitter</td>-->
-                </tr>
-                <tr>
-                    <th scope="row"><a href="/teachers">Teachers</a></th>
-                    <!--<td>Larry</td>-->
-                    <!--<td>the Bird</td>-->
-                    <!--<td>@twitter</td>-->
-                </tr>
-                <tr>
-                    <th scope="row"><a href="/teacherscourses">Teacherscourses</a></th>
-                    <!--<td>Larry</td>-->
-                    <!--<td>the Bird</td>-->
-                    <!--<td>@twitter</td>-->
-                </tr>
-
 
                 </tbody>
             </table>
